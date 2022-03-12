@@ -1,0 +1,11 @@
+services:
+  kong-database:
+    image: flask-app:v4
+    container_name: flask-app-1
+    ports:
+      - 5000:5000
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:5000 || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
